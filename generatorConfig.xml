@@ -30,8 +30,8 @@
     <jdbcConnection 
     connectionURL="jdbc:mysql://127.0.0.1:3306/db_bbs" 
     driverClass="com.mysql.jdbc.Driver" 
-    password="root" 
-    userId="13727848601ma" />
+    password="13727848601ma" 
+    userId="root" />
 
     <javaTypeResolver >
       <property name="forceBigDecimals" value="false" />
