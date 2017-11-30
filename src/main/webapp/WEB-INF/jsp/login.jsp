@@ -1,202 +1,409 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>登录界面</title>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="${basePath}/ssm/assets/css/font-awesome.min.css"> 
-	<link rel="stylesheet" href="${basePath}/ssm/assets/css/bootstrap.min.css"> 
-	<link rel="stylesheet" type="text/css" href="${basePath}/ssm/assets/css/htmleaf-demo.css">
-	<style type="text/css">
-		.form-bg{
-		    background: #00b4ef;
-		}
-		.form-horizontal{
-		    background: #fff; 
-		    padding-bottom: 40px;
-		    border-radius: 15px;
-		    text-align: center;
-		}
-		.form-horizontal .heading{
-		    display: block;
-		    font-size: 35px;
-		    font-weight: 700;
-		    padding: 35px 0;
-		    border-bottom: 1px solid #f0f0f0;
-		    margin-bottom: 30px;
-		}
-		.form-horizontal .form-group{
-		    padding: 0 40px;
-		    margin: 0 0 25px 0;
-		    position: relative;
-		}
-		.form-horizontal .form-control{
-		    background: #f0f0f0;
-		    border: none;
-		    border-radius: 20px;
-		    box-shadow: none;
-		    padding: 0 20px 0 45px;
-		    height: 40px;
-		    transition: all 0.3s ease 0s;
-		}
-		.form-horizontal .form-control:focus{
-		    background: #e0e0e0;
-		    box-shadow: none;
-		    outline: 0 none;
-		}
-		.form-horizontal .form-group i{
-		    position: absolute;
-		    top: 12px;
-		    left: 60px;
-		    font-size: 17px;
-		    color: #c8c8c8;
-		    transition : all 0.5s ease 0s;
-		}
-		.form-horizontal .form-control:focus + i{
-		    color: #00b4ef;
-		}
-		.form-horizontal .fa-question-circle{
-		    display: inline-block;
-		    position: absolute;
-		    top: 12px;
-		    right: 60px;
-		    font-size: 20px;
-		    color: #808080;
-		    transition: all 0.5s ease 0s;
-		}
-		.form-horizontal .fa-question-circle:hover{
-		    color: #000;
-		}
-		.form-horizontal .main-checkbox{
-		    float: left;
-		    width: 20px;
-		    height: 20px;
-		    background: #11a3fc;
-		    border-radius: 50%;
-		    position: relative;
-		    margin: 5px 0 0 5px;
-		    border: 1px solid #11a3fc;
-		}
-		.form-horizontal .main-checkbox label{
-		    width: 20px;
-		    height: 20px;
-		    position: absolute;
-		    top: 0;
-		    left: 0;
-		    cursor: pointer;
-		}
-		.form-horizontal .main-checkbox label:after{
-		    content: "";
-		    width: 10px;
-		    height: 5px;
-		    position: absolute;
-		    top: 5px;
-		    left: 4px;
-		    border: 3px solid #fff;
-		    border-top: none;
-		    border-right: none;
-		    background: transparent;
-		    opacity: 0;
-		    -webkit-transform: rotate(-45deg);
-		    transform: rotate(-45deg);
-		}
-		.form-horizontal .main-checkbox input[type=checkbox]{
-		    visibility: hidden;
-		}
-		.form-horizontal .main-checkbox input[type=checkbox]:checked + label:after{
-		    opacity: 1;
-		}
-		.form-horizontal .text{
-		    float: left;
-		    margin-left: 7px;
-		    line-height: 20px;
-		    padding-top: 5px;
-		    text-transform: capitalize;
-		}
-		.form-horizontal .btn{
-		    float: right;
-		    font-size: 14px;
-		    color: #fff;
-		    background: #00b4ef;
-		    border-radius: 30px;
-		    padding: 10px 25px;
-		    border: none;
-		    text-transform: capitalize;
-		    transition: all 0.5s ease 0s;
-		}
-		@media only screen and (max-width: 479px){
-		    .form-horizontal .form-group{
-		        padding: 0 25px;
-		    }
-		    .form-horizontal .form-group i{
-		        left: 45px;
-		    }
-		    .form-horizontal .btn{
-		        padding: 10px 20px;
-		    }
-		}
-	</style>
-	<!--[if IE]>
-		<script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<![endif]-->
-</head>
-<body>
-	<div class="htmleaf-container">
-		<header class="htmleaf-header">
-			<h1>登录</h1>
-			<!-- <div class="htmleaf-links">
-				<a class="htmleaf-icon icon-htmleaf-home-outline" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
-				<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="http://www.htmleaf.com/css3/ui-design/201610114094.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
-			</div> -->
-		</header>
-		<div class="demo form-bg" style="padding: 20px 0;">
-		        <div class="container">
-		            <div class="row">
-		                <div class="col-md-offset-3 col-md-6">
-		                    <form class="form-horizontal" name= "loginform" method = "post"  action = "userLogin"  >
-		                        <span class="heading">用户登录</span>
-		                        <div class="form-group">
-		                            <input type="" name="username" class="form-control" id="inputEmail3" placeholder="用户名或电子邮件">
-		                            <i class="fa fa-user"></i>
-		                        </div>
-		                        <div class="form-group help">
-		                            <input type="password" name = "password" class="form-control" id="inputPassword3" placeholder="密　码">
-		                            <i class="fa fa-lock"></i>
-		                            <a href="#" class="fa fa-question-circle"></a>
-		                        </div>
-		                        <div class="form-group">
-		                            <div class="main-checkbox">
-		                                <input type="checkbox" value="None" id="checkbox1" name="check"/>
-		                                <label for="checkbox1"></label>
-		                            </div>
-		                            <span class="text">Remember me</span>
-		                            <button type="submit" class="btn btn-default">登录</button>
-		                        </div>
-		                    </form>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		<!-- <div class="related">
-		    <h3>如果你喜欢这个插件，那么你可能也喜欢:</h3>
-		    <a href="http://www.htmleaf.com/jQuery/Form/201608183883.html">
-			  <img src="related/1.jpg" width="300" alt="带摇晃特效的扁平风格登录注册表单界面"/>
-			  <h3>带摇晃特效的扁平风格登录注册表单界面</h3>
-			</a>
-			<a href="http://www.htmleaf.com/css3/ui-design/201603013167.html">
-			  <img src="related/2.jpg" width="300" alt="简洁时尚的用户登录界面设计效果"/>
-			  <h3>简洁时尚的用户登录界面设计效果</h3>
-			</a>
-		</div> -->
-	</div>
-	
-</body>
+<jsp:include page="/WEB-INF/jsp/common/domain.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/common/head.jsp"></jsp:include>
+
+		<div class="container">
+			<div class="box">
+				<div class="row">
+					<!--<div class="col-md-1"></div>-->
+					<div class="col-md-12">
+
+						<div class="row loginregister">
+							<!--划条横线-->
+							<div></div>
+							<div class="col-md-1"></div>
+							<div class="col-md-5 ibox register">
+								<h1>新会员注册</h1>
+								<div class="login_msg" id="login_errMsg" style="display: none;">
+						      		<font color="red"></font>
+						    	</div>
+								<form>
+									<div class="form-group">
+										<input type="mobile" name="mobile" class="form-control in" id="exampleInputEmail1" placeholder="手机号码" >
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" class="form-control in" id="exampleInputPassword1" placeholder="密码" >
+									</div>
+									<div class="form-group code">
+										<input type="text" name="code" value="${code}" class="form-control verificationcode in" placeholder="验证码">
+										<%-- <img src="${baseResPath }/img/ValidateCode.gif" width="100px" height="50" /> --%>
+										<img id="register_validateCodeId" src="${baseUrl}/user/getVerificationCode.do" width="100px" height="50" />
+										<a title="点击更换" href="javascript:void(0)" id="changeVerificationCode">刷新</a>
+									</div>
+									<div class="form-group checkbox">
+										性别：
+										<label>
+				      						<input type="radio" name="sex" value="1" checked> 男
+				      						<i class="fa fa-mars-stroke" aria-hidden="true"></i>
+			   							</label>
+										<label>
+				      						<input type="radio" name="sex" value="0"> 女
+				      						<i class="fa fa-venus" aria-hidden="true"></i>
+			   							</label>
+									</div>
+
+									<div class=" form-group agreement">
+										<input type="checkbox" name="protocol" checked> 已同意《Mtime当讯网服务条款》
+									</div>
+									<div class="login_msg" id="login_errMsg" style="display: none;">
+							      		<font color="red"></font>
+							    	</div>
+									<div class="form-group ibutton">
+										<button type="button" id="register_ok"  class="btn btn-primary  btn-lg btn-block">注册</button>
+									</div>
+								</form>
+
+							</div>
+
+							<div class="col-md-5 ibox login">
+								<h1>会员登录</h1>
+								<form>
+									<div class="form-group">
+										<input type="mobile" name="mobile" class="form-control in" id="exampleInputEmail1" placeholder="手机号码" >
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" class="form-control in" id="exampleInputPassword1" placeholder="密码" >
+									</div>
+
+									<div class="form-group checkbox">
+										<input type="checkbox"> 记住我
+									</div>
+									<div class="form-group ibutton">
+										<button type="button" id="login_ok"  class="btn btn-primary  btn-lg btn-block">登录</button>
+									</div>
+								</form>
+
+							</div> 
+							<div class="col-md-1"></div>
+
+						</div>
+					</div>
+					<!--<div class="col-md-1"></div>-->
+				</div>
+
+			</div>
+		</div>
+		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
+		<script type="text/javascript">
+		        //依赖于jQuery的代码
+					     
+		    	function loginErrorMsg(msg){
+					$('div#login_errMsg > font').html(msg);
+					$('#login_errMsg').show();
+				}
+		        
+		        
+			      $(function () { 
+			    	  
+
+				        function login_reloadImage(){
+				        	$('#register_validateCodeId').attr('src','${baseUrl}/user/getVerificationCode.do?id='+Math.random());
+				        }
+			    	  
+			    	 $('#changeVerificationCode').click(function(){
+			    		 login_reloadImage();
+			    	 });
+			    	
+			    	/* 注册部分 */
+			        $('.register form').bootstrapValidator({
+			            message: 'This value is not valid',
+			            feedbackIcons: {
+			                valid: 'glyphicon glyphicon-ok',
+			                invalid: 'glyphicon glyphicon-remove',
+			                validating: 'glyphicon glyphicon-refresh'
+			            },
+			            fields: {
+			            	mobile: {
+			                    message: '手机号码验证失败',
+			                    validators: {
+			                        notEmpty: {
+			                            message: '手机号码不能为空'
+			                        },
+			                        stringLength: {
+			                            min: 11,
+			                            max: 11,
+			                            message: '手机号码长度必须在11位'
+			                        },
+			                    }
+			                },
+			                password: {
+			                    validators: {
+			                        notEmpty: {
+			                            message: '密码不能为空'
+			                        },
+			                        stringLength: {
+			                            min: 6,
+			                            max: 18,
+			                            message: '密码长度必须在6到18位之间'
+			                        },
+			                        regexp: {
+			                            regexp: /^[a-zA-Z0-9_]+$/,
+			                            message: '密码只能包含大写、小写、数字和下划线'
+			                        }
+			                    }
+			                },
+			                code:{
+			                	validators: {
+			                		 notEmpty:{
+			                			 message:'验证码不能为空，分大小写'
+			                		 },
+			                		 regexp:{
+			                			 regexp: /^[a-zA-Z0-9]+$/,
+				                         message: '密码只能包含大写、小写和数字' 
+			                		 }
+			                	 }
+			                }/* ,
+			                sex:{
+			                	 validators: {
+			                		 notEmpty:{
+			                			 message:'必须选择一个'
+			                		 }
+			                	 }
+			                },
+			                protocol:{
+			                	validators: {
+			                		 notEmpty:{
+			                			 message:'必须同意'
+			                		 }
+			                	 }
+			                } */
+			            },
+			            submitHandler: function (validator, form, submitButton) {
+			                alert("submit");
+			            }
+			            
+			            
+			        });
+			        /* 登陆部分 */
+			        $('.login form').bootstrapValidator({
+			            message: 'This value is not valid',
+			            feedbackIcons: {
+			                valid: 'glyphicon glyphicon-ok',
+			                invalid: 'glyphicon glyphicon-remove',
+			                validating: 'glyphicon glyphicon-refresh'
+			            },
+			            fields: {
+			            	mobile: {
+			                    message: '手机号码验证失败',
+			                    validators: {
+			                        notEmpty: {
+			                            message: '手机号码不能为空'
+			                        },
+			                        stringLength: {
+			                            min: 11,
+			                            max: 11,
+			                            message: '手机号码长度必须在11位'
+			                        },
+			                    }
+			                },
+			                password: {
+			                    validators: {
+			                        notEmpty: {
+			                            message: '密码不能为空'
+			                        },
+			                        stringLength: {
+			                            min: 6,
+			                            max: 18,
+			                            message: '密码长度必须在6到18位之间'
+			                        },
+			                        regexp: {
+			                            regexp: /^[a-zA-Z0-9_]+$/,
+			                            message: '密码只能包含大写、小写、数字和下划线'
+			                        }
+			                    }
+			                },
+			                code:{
+			                	validators: {
+			                		 notEmpty:{
+			                			 message:'验证码不能为空，区分大小写'
+			                		 },
+			                		 regexp:{
+			                			 regexp: /^[a-zA-Z0-9]+$/,
+				                         message: '密码只能包含大写、小写和数字' 
+			                		 }
+			                	 }
+			                }
+			            }
+			        });
+			        
+			        /* 验证验证码 */
+			        function checkImgCode(){
+			        	
+			        	var code = $("input[name='code']").val();
+			    		var isEqual = false;
+			    		$.ajax({
+			    			url:'${baseUrl}/user/checkValidateCodeAjax.do',
+			    			type:'get',
+			    			async:false,
+			    			data:{code:code,id:Math.random()},
+			    			dataType:'json',
+			    			success:function(response){
+			    				if(response.isEqual){
+			    					isEqual = true;
+			    				}else{
+			    					isEqual = false;
+			    					//login_reloadImage();
+			    					//重新申请验证码？
+			    					//$('#register_validateCodeId').attr('src','${baseUrl}/user/getVerificationCode?id='+Math.random());
+			    				}
+			    			},
+			    			error:function(response){
+			    				alert("校验验证码服务繁忙！");
+			    				return false;
+			    			}
+			    		});
+			    		return isEqual;
+			        }
+			        
+			        $("#register_ok").click(function(){
+			    		onRegister();
+			    	});
+			        
+			        function onRegister(){
+			        	var mobile = $('.register form').find("input[name='mobile']").val();
+			        	var password = $('.register form').find("input[name='password']").val();
+			        	var code = $('.register form').find("input[name='code']").val();
+			        	var sex = $(':radio[name="sex"]:checked').val();
+			        	
+			        	if(code == null || code == ''){
+			        		alert("验证码为空");
+			        		return false;
+			        	}
+			        	
+			        	if(typeof(sex) =="undefined"){
+			        		alert("必须选择性别!");
+			        		return false;
+			        	}
+			        	
+			        	if(!$("input[name='protocol']").is(':checked')) {
+			        		alert("必须同意协议");
+			        		return false;
+			        	}
+			        	
+			        	var issubmit = true;
+			    		var i_index  = 0;
+			    		$('.register form').find('.in').each(function(i){
+			    			if ($.trim($(this).val()).length == 0) {
+			    				issubmit = false;
+			    				if (i_index == 0)
+			    					i_index  = i;
+			    			}
+			    		});
+			    		if (!issubmit) {
+			    			$(this).find('.in').eq(i_index).focus();
+			    			return false;
+			    		}
+			    		
+			    		if(!checkImgCode()){
+			    			alert('验证码错误!');
+			    			return false;
+			    		}
+			    		$("#register_ok").attr("disabled", true).val('注册中..');
+			        	console.log("sex:"+sex);
+			        	console.log("mobile:"+mobile);
+			        	$.ajax({
+			    			url:'${baseUrl}/user/registerAjax.do?randomId='+Math.random(),
+			    			type:'get',
+			    			data:{mobile:mobile, password:password,sex:sex},
+			    			dataType:'json',
+			    			async:false,
+			    			success:function(response){
+			    				if(response.isFail){
+			    					loginErrorMsg(response.msg);
+			    					$("#register_ok").attr("disabled", false).val('注册');
+			    					//重新加载验证码
+			    					login_reloadImage();
+			    					return false;
+			    				}else{
+			    					window.location = '${baseUrl}/user/blogList.do';
+			    				}
+			    			},
+			    			error:function(response){
+			    				alert("服务器繁忙！");
+			    				$("#register_ok").attr("disabled", false).val('登录');
+			    				return false;
+			    			}
+			    		});
+			            return false;
+			        	
+			       }
+			        
+			        $("#login_ok").click(function(){
+			    		onLogin();
+			    	});
+			        
+			        function onLogin(){
+			        	var mobile = $('.register form').find("input[name='mobile']").val();
+			        	var password = $('.register form').find("input[name='password']").val();
+			        	/* var code = $('.register form').find("input[name='code']").val();
+			        	var sex = $(':radio[name="sex"]:checked').val();
+			        	
+			        	if(code == null || code == ''){
+			        		alert("验证码为空");
+			        		return false;
+			        	}
+			        	
+			        	if(typeof(sex) =="undefined"){
+			        		alert("必须选择性别!");
+			        		return false;
+			        	}
+			        	
+			        	if(!$("input[name='protocol']").is(':checked')) {
+			        		alert("必须同意协议");
+			        		return false;
+			        	}
+			        	 */
+			        	var issubmit = true;
+			    		var i_index  = 0;
+			    		$('.login form').find('.in').each(function(i){
+			    			if ($.trim($(this).val()).length == 0) {
+			    				issubmit = false;
+			    				if (i_index == 0)
+			    					i_index  = i;
+			    			}
+			    		});
+			    		if (!issubmit) {
+			    			$(this).find('.in').eq(i_index).focus();
+			    			return false;
+			    		}
+			    		
+			    		if(!checkImgCode()){
+			    			alert('验证码错误!');
+			    			return false;
+			    		}
+			    		$("#login_ok").attr("disabled", true).val('登录中..');
+			        	console.log("mobile:"+mobile);
+			        	$.ajax({
+			    			url:'${baseUrl}/user/loginAjax.do?randomId='+Math.random(),
+			    			type:'get',
+			    			data:{mobile:mobile, password:password},
+			    			dataType:'json',
+			    			async:false,
+			    			success:function(response){
+			    				if(response.isFail){
+			    					loginErrorMsg(response.msg);
+			    					$("#login_ok").attr("disabled", false).val('登录');
+			    					//重新加载验证码
+			    					login_reloadImage();
+			    					return false;
+			    				}else{
+			    					window.location = '${baseUrl}/user/blogList.do';
+			    				}
+			    			},
+			    			error:function(response){
+			    				alert("服务器繁忙！");
+			    				$("#login_ok").attr("disabled", false).val('登陆');
+			    				return false;
+			    			}
+			    		});
+			            return false;
+			        	
+			       }
+			        
+			     }); 
+    
+    
+    </script>
+	</body>
+
 </html>

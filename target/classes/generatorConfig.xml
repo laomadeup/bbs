@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-<generatorConfiguration>
+<!-- <generatorConfiguration>
 	<classPathEntry location="F:\eclipse-workspace\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />
   <context id="context1">
     <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/db_bbs" driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
@@ -17,4 +17,44 @@
     
     
   </context>
+</generatorConfiguration> -->
+
+<generatorConfiguration>
+
+  <context id="context1" targetRuntime="MyBatis3">
+  	
+  	<commentGenerator>
+	  <property name="suppressAllComments" value="true" />
+	</commentGenerator>
+  	
+    <jdbcConnection 
+    connectionURL="jdbc:mysql://127.0.0.1:3306/db_bbs" 
+    driverClass="com.mysql.jdbc.Driver" 
+    password="root" 
+    userId="13727848601ma" />
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="cn.laoma.domain" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="cn.laoma.mapping"  targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="cn.laoma.dao"  targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table schema="db_bbs" tableName="user" domainObjectName="User" >
+     
+    </table>
+
+  </context>
 </generatorConfiguration>
+
+

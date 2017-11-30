@@ -17,6 +17,13 @@ public interface IUserDao {
     List<User> selectByExample(UserExample example);
     
     public User getUserById(Integer id);
+    
+    public User getUserByEmail(String email);
+    
+    public User getUserByMobile(String mobile);
+    
+    public User getUserByMobileAndPassword(@Param("mobile")String mobile,@Param("password")String password);
+    
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

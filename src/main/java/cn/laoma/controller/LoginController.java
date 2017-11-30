@@ -12,7 +12,11 @@ public class LoginController{
 
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request,Model model){
-		return "login";
 		
+		System.out.println("login==============");
+		
+		
+		
+		return "login";
 	}
 }
