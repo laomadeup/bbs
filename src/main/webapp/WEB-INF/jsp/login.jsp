@@ -95,10 +95,12 @@
 		        
 			      $(function () { 
 			    	  
+			    	$('.container #navbar #index').attr("class","active");
+			    	  
 
-				        function login_reloadImage(){
-				        	$('#register_validateCodeId').attr('src','${baseUrl}/user/getVerificationCode.do?id='+Math.random());
-				        }
+			        function login_reloadImage(){
+			        	$('#register_validateCodeId').attr('src','${baseUrl}/user/getVerificationCode.do?id='+Math.random());
+			        }
 			    	  
 			    	 $('#changeVerificationCode').click(function(){
 			    		 login_reloadImage();
@@ -315,7 +317,7 @@
 			    					login_reloadImage();
 			    					return false;
 			    				}else{
-			    					window.location = '${baseUrl}/user/blogList.do';
+			    					window.location = '${baseUrl}/user/blogList.do?pageNum=1';
 			    				}
 			    			},
 			    			error:function(response){
@@ -333,8 +335,8 @@
 			    	});
 			        
 			        function onLogin(){
-			        	var mobile = $('.register form').find("input[name='mobile']").val();
-			        	var password = $('.register form').find("input[name='password']").val();
+			        	var mobile = $('.login form').find("input[name='mobile']").val();
+			        	var password = $('.login form').find("input[name='password']").val();
 			        	/* var code = $('.register form').find("input[name='code']").val();
 			        	var sex = $(':radio[name="sex"]:checked').val();
 			        	
@@ -367,10 +369,6 @@
 			    			return false;
 			    		}
 			    		
-			    		if(!checkImgCode()){
-			    			alert('验证码错误!');
-			    			return false;
-			    		}
 			    		$("#login_ok").attr("disabled", true).val('登录中..');
 			        	console.log("mobile:"+mobile);
 			        	$.ajax({
@@ -387,7 +385,7 @@
 			    					login_reloadImage();
 			    					return false;
 			    				}else{
-			    					window.location = '${baseUrl}/user/blogList.do';
+			    					window.location = '${baseUrl}/user/blogList.do?pageNum=1';
 			    				}
 			    			},
 			    			error:function(response){

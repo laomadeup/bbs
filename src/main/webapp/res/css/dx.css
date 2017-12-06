@@ -108,7 +108,7 @@ footer {
 }
 
 .boxlist .pic>div {
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 
 .boxlist .pic img {
@@ -127,9 +127,10 @@ footer {
 	height: 34px;
 	line-height: 34px;
 	padding: 0 9px;
+	border-radius: 5px;
 }
 
-.boxboxlist.title a {
+.boxboxlist .pic .title .smalltitle {
 	font-size: 16px;
 	line-height: 30px;
 	font-weight: 700;
@@ -146,6 +147,23 @@ footer {
 	display: block;
 	height: 16px;
 	float: right;
+}
+
+.boxlist div .content{
+	padding-top: 15px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;/* 这儿的数字代表的就是你所需要实现效果的第N行  */
+    -webkit-box-orient: vertical;
+} 
+
+.boxlist .pagenum{
+	background-color: #FFFFff;
+	line-height: 1.42857143;
+	height: 36px;
+	border-radius: 5px;
+	padding: 9px;
 }
 
 .pagination {
@@ -165,6 +183,158 @@ footer {
 	margin-top: 38px;
 }
 
+/**
+ * 文章管理页面的样式
+ * */
+.navbar .container .navbar-header>a{
+	line-height: 30px;
+    margin-right: 30px;
+    color: #c8c8c8;
+    font-size: 25px;
+}
+
+.container .managecontentbox .row{
+	padding-top:30px;
+	/*background-color: #FFFFff;*/
+}
+.container .managecontentbox .usercontent {
+	
+	border-radius: 5px;
+    height: 270px;
+    padding-top: 28px;
+	background-color: #FFFFff;
+}
+
+.container .managecontentbox .articlecontent {
+	
+	border-radius: 5px;
+    height: 970px;
+    padding-top: 28px;
+	background-color: #FFFFff;
+}
+
+.container .articlecontent .articlelist_item {
+	
+	padding: 0px 20px 15px;
+	background: #fff;
+	
+}
+
+.container .articlecontent .article_content{
+	text-indent: 25px;
+    width: 500px;
+	padding-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.container .articlecontent .clear {
+	border-bottom: 1px dashed #000;
+    margin-top: 20px;
+}
+
+.container .managecontentbox .usercontent .clear {
+	border-bottom: 1px dashed #000;
+    margin-top: 20px;
+}
+
+.container .managecontentbox .usercontent .addArticle {
+	margin-top: 15px;
+    float: right;
+}
+
+.container .articlecontent .articlemanage {
+	margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+    color: #999;
+}
+
+.container .articlecontent .articlemanage>span {
+	margin-right: 16px;
+}
+
+.container .articlecontent .articlemanage .link_view {
+	background-image: url("../img/skin-type-icon.png");
+	background-repeat: no-repeat;
+	background-position: 0 -25px;
+	padding-left: 24px;
+}
+
+.container .articlecontent .articlemanage .link_comments {
+	
+	background-image: url("../img/skin-type-icon-yellow.png") !important;
+	background-repeat: no-repeat;
+	background-position: 0 -43px;
+	padding-left: 17px;
+}
+
+.container .articlecontent .pagelist .pagination {
+	margin-right: 30px;
+}
+
+.container .articlecontent .pagelist .pagetotal {
+	
+	padding-top: 8px;
+    position: fixed;
+    padding-left: 28px;
+    font-size: 14px;
+}
+
+#navbar .headlogin {
+	
+	float: right;
+    margin-top: 15px;
+	
+}
+
+#navbar .loginimg .userimg {
+	margin-top: 16px;
+}
+
+#navbar .loginimg img {
+	background: #fff;
+	border-radius: 50%;
+	border: 2px solid #c9c9c9;
+	vertical-align: middle;
+	margin-right: 5px;
+	width: 28px;
+	height: 28px;
+}
+
+.container .managecontentbox .row .userinfo {
+	margin-top: -7px;
+    background: #f5f5f5;
+    height: 29px;
+    line-height: 29px;
+    padding-left: 11px;
+    color: #333;
+    font-weight: bold;
+}
+
+.container .managecontentbox .blog_userface {
+	text-align: center;
+	margin-left: 80px;
+    margin-top: 20px;
+    background-image: url("../img/figurehead.png");
+    background-position: 50%;
+	background-repeat: no-repeat;
+	background-color:#dcdcdc ;
+	width: 104px;
+	height: 104px;
+	left: 11px;
+	top: 11px;
+	border-radius: 50% 50% 50% 50%;
+	overflow: hidden;
+}
+
+.container .managecontentbox .blog_username {
+	text-align: center;
+	margin-top: 10px
+}
 
 
 

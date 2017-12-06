@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import cn.laoma.dao.IUserDao;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements IUserService{
 
 	@Resource
 	private IUserDao userDao;
+	private static Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Override
 	public User getUserById(Integer id) {
@@ -131,7 +133,7 @@ public class UserServiceImpl implements IUserService{
 			System.out.println("没有这个用户,请注册!");
 			return null;
 		}
-		if(!po.getStatus().equals(Short.valueOf("1"))){
+		if(!Short.valueOf("1").equals(po.getStatus())){
 			this.frozenStatus(po.getId());
 			return null;
 		}

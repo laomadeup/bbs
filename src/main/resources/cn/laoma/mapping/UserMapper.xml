@@ -9,8 +9,8 @@
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="sex" jdbcType="SMALLINT" property="mobile" />
-    <result column="status" jdbcType="SMALLINT" property="mobile" />
+    <result column="sex" jdbcType="SMALLINT" property="sex" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
     <result column="birthday" jdbcType="BIGINT" property="birthday" />
     <result column="createTimestamp" jdbcType="BIGINT" property="createTimestamp" />
   </resultMap>
@@ -122,7 +122,7 @@
   			mobile = #{mobile}
   		</if>
   		<if test="password != null">
-  			password = #{password}
+  		  and password = #{password}
   		</if>
   	</where>
   </select>
