@@ -292,7 +292,7 @@ footer {
 }
 
 #navbar .loginimg .userimg {
-	margin-top: 16px;
+	margin-top: 12px;
 }
 
 #navbar .loginimg img {
@@ -300,7 +300,7 @@ footer {
 	border-radius: 50%;
 	border: 2px solid #c9c9c9;
 	vertical-align: middle;
-	margin-right: 5px;
+	margin-right: 2px;
 	width: 28px;
 	height: 28px;
 }
@@ -335,6 +335,46 @@ footer {
 	text-align: center;
 	margin-top: 10px
 }
+/*文章编辑页面*/
+
+.container .articlebox-edit .user_info {
+	margin-bottom: 50px;
+}
+
+.container .articlebox-edit .user_img {
+	float: left;
+}
+
+.container .articlebox-edit .user_img img {
+	border-radius: 50%;
+    height: 104px;
+    width: 104px;
+   
+}
+
+.container .articlebox-edit .user_info .user_name {
+	margin-left: 130px;
+    padding-top: 18px;
+}
+
+.container .articlebox-edit .user_info .user_blog {
+	margin-left: 130px;
+}
+
+.container .articlebox-edit .row div {
+	margin-left: 8px;
+}
+
+.container .articlebox-edit .row .article_title {
+	height: 30px;
+}
+
+.container .articlebox-edit .article_submit {
+	border-radius: 5px;
+	text-align: center;
+    background-color: #eeeeee;
+}
+
 
 
 

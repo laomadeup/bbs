@@ -12,5 +12,11 @@
 <script src="${baseResPath }/component/icheck-1.x/icheck.js" type="text/javascript" charset="utf-8"></script>
 <!-- 校验 -->
 
+<!--富文本-->
+
+		<script src="${baseResPath }/component/bootstrap-wysiwyg-master/external/jquery.hotkeys.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${baseResPath }/component/bootstrap-wysiwyg-master/bootstrap-wysiwyg.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${baseResPath }/component/bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
 <!--my-->
 <script src="${baseResPath }/js/index.js" type="text/javascript" charset="utf-8"></script>

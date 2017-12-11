@@ -23,13 +23,83 @@
 						
 						<div class="addArticle">
 							<span class="glyphicon glyphicon-plus"></span>
-							<a href="${baseUrl}/user/AddArticle.do">增加文章</a>
+							<a href="${baseUrl}/user/addArticle.do">增加文章</a>
 						</div>
 					</div>
 					<div class="col-md-1">
 						
+						<!-- Small modal 模态弹窗-->
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+						
+						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+						  <div class="modal-dialog modal-sm" role="document">
+							    <div class="modal-content">
+							      ...
+							    </div>
+							</div>
+						</div> -->
 					</div>
+					
+					
+					
+					
 					<div class="col-md-8 articlecontent">
+						
+						
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+						
+						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+						  <div class="modal-dialog modal-sm" role="document">
+							    <div class="modal-content">
+							      ...
+							    </div>
+							</div>
+						</div>
+						
+						 -->
+						 
+						 <!-- 弹窗 -->
+						<button type="button" class="btn btn-primary" style="display:none" data-toggle="modal" id="btn_add" ></button>
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					        <div class="modal-dialog" role="document">
+					            <div class="modal-content">
+					                <div class="modal-header">
+					                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					                    <h4 class="modal-title" id="myModalLabel">新增</h4>
+					                </div>
+					                <div class="modal-body">
+					
+					                    <div class="form-group">
+					                        <label for="txt_departmentname">部门名称</label>
+					                        <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="部门名称">
+					                    </div>
+					                    <div class="form-group">
+					                        <label for="txt_parentdepartment">上级部门</label>
+					                        <input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="上级部门">
+					                    </div>
+					                    <div class="form-group">
+					                        <label for="txt_departmentlevel">部门级别</label>
+					                        <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="部门级别">
+					                    </div>
+					                    <div class="form-group">
+					                        <label for="txt_statu">描述</label>
+					                        <input type="text" name="txt_statu" class="form-control" id="txt_statu" placeholder="状态">
+					                    </div>
+					                </div>
+					                <div class="modal-footer">
+					                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+					                    <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+					                </div>
+					            </div>
+					        </div>
+					    </div> 
+						 
+						 
+						 
+						 
+						 
+						 
+						
 						
 						<div class="article_list">
 						<%-- 	<c:if test="${ pageInfo.list == null || fn:length(pageInfo.list) == 0  }">
@@ -47,7 +117,7 @@
 										
 											<div class="article_title">
 												<h3>
-													<a href="${baseUrl}/user/articleDetail.do?articleId=${item.articleid}">${item.title }</a>
+													<a href="${baseUrl}/user/articleDetail.do?articleId=${item.articleid}&pageNum=${pageInfo.pageNum}">${item.title }</a>
 												</h3>
 											</div>
 											<div class="article_content">
@@ -56,7 +126,7 @@
 											<div class="articlemanage">
 												<span class="link_postdate">2014-10-23 20:29</span>
 										        <span class="link_view" title="阅读次数">
-										        	<a href="/ma155211/article/details/40403001" title="阅读次数">阅读</a>
+										        	<a href="${baseUrl}/user/articleDetail.do?articleId=${item.articleid}&pageNum=${pageInfo.pageNum}" title="阅读次数">阅读</a>
 										        		(239)
 										        </span>
 										        <span class="link_comments" title="评论次数">
@@ -64,7 +134,7 @@
 										        	(0)
 										        </span>
 									            <span class="link_edit">
-									            	<a href="http://write.blog.csdn.net/postedit/40403001" title="编辑">编辑</a>
+									            	<a href="${baseUrl}/user/articleEdit.do?articleId=${item.articleid}" title="编辑">编辑</a>
 									            </span>
 									            <span class="link_delete">
 									            	<a href="javascript:void(0);" onclick="javascript:deleteArticle(40403001);return false;" title="删除">删除</a>
@@ -162,7 +232,11 @@
  		<script type="text/javascript">
  		
  			$(function(){
+ 				$("#btn_add").click(function () {
+ 				    $("#myModalLabel").text("新增");
+ 				    $('#myModal').modal();
  				
+ 				});
  				//$('.container .navbar #myblog').attr("class","active");
  				
  			});

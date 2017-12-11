@@ -9,7 +9,7 @@ public class Article {
 
     private String content;
     /**
-     * 是否展示
+     * 是否展示:-1:不展示，1：展示
      * */
     private Short showstatus;
     /**
@@ -18,7 +18,7 @@ public class Article {
     private Short articletype;
     
     /**
-     * 是否评论
+     * 是否评论 -1 不评论 ，1 评论
      * */
     private Short isdiscuss;
 

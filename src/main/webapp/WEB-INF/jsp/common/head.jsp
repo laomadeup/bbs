@@ -13,7 +13,7 @@
 		
 		<!-- Bootstrap -->
 		<link href="${baseResPath }/css/bootstrap.min.css" rel="stylesheet">
-		<link href="${baseResPath }/css/bootstrap.css" rel="stylesheet">
+		<%-- <link href="${baseResPath }/css/bootstrap.css" rel="stylesheet"> --%>
 		<!--component-->
 		<!--<link rel="stylesheet" type="text/css" href="${baseResPath }/component/font-awesome-4.7.0/css/font-awesome.css" />-->
 		
@@ -21,11 +21,13 @@
 		<link rel="stylesheet" type="text/css" href="${baseResPath }/css/font-awesome.css"/>
 		
 		<link rel="stylesheet" type="text/css" href="${baseResPath }/component/icheck-1.x/skins/all.css" />
+		
+		<!-- 输入框验证插件 -->
+    	<link href="${baseResPath }/css/bootstrapValidator.min.css" rel="stylesheet" />
+		<link href="${baseResPath }/css/bootstrapValidator.css" rel="stylesheet"/>
+		
 		<link rel="stylesheet" type="text/css" href="${baseResPath }/css/dx.css?datetime=20171207" />
 		
-    	<link href="${baseResPath }/css/bootstrapValidator.min.css" rel="stylesheet" />
-		
-		<link href="${baseResPath }/css/bootstrapValidator.css" rel="stylesheet"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -79,9 +81,6 @@
 					        </li>
 					      </ul>
 					</c:if>
-					
-					
-					
 					
 					
 				</div>

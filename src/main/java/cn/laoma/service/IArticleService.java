@@ -28,4 +28,17 @@ public interface IArticleService {
 	public List<Article> getAllArticleById(Integer userId);
 
 	
+	/**
+	 * 保存文章
+	 * */
+	public Integer save(Article article);
+
+	
+	
+	/**
+	 * 修改文章
+	 * */
+	public Boolean modifyArticle(Article article);
+
+	
 }

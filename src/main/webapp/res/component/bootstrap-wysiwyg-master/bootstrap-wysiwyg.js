@@ -4,7 +4,7 @@
 (function ($) {
 	'use strict';
 	var readFileIntoDataUrl = function (fileInfo) {
-		var loader = $.Deferred(),
+		/*var loader = $.Deferred(),
 			fReader = new FileReader();
 		fReader.onload = function (e) {
 			loader.resolve(e.target.result);
@@ -12,7 +12,48 @@
 		fReader.onerror = loader.reject;
 		fReader.onprogress = loader.notify;
 		fReader.readAsDataURL(fileInfo);
-		return loader.promise();
+		return loader.promise();*/
+		
+		
+		var form = new FormData();
+        form.append("editorImage", fileInfo);
+        form.append("enctype","multipart/form-data");
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", "/ssm/user/uploadImage.do", false);//这里是你传到后台的入库的方法，这个方法返回图片路径就可以了
+        xhr.send(form);
+        return xhr.responseText;
+		
+		/*var loader = $.Deferred(),  
+        fReader = new FileReader(),  
+        img = '';  
+		fReader.onload = function (e) {  
+        img = e.target.result;  
+        $.ajax({  
+            url: '/ssm/user/uploadImage.do',  
+            type: 'post',  
+            async: false,     
+            dataType: 'json',  
+           // data: {},  
+            success: function(data){  
+             console.log("data:"+data);
+             if(data.responseCode == 1){  
+            	 loader.resolve(data.imgpath);  
+              }else if(data.responseCode == 0){  
+                 alert('上传失败');  
+              }   
+            }  
+        });   
+    };  
+    fReader.onerror = loader.reject;  
+    fReader.onprogress = loader.notify;  
+    fReader.readAsDataURL(fileInfo);  
+    return loader.promise();  */
+		
+		
+		
+		
+		
+		
 	};
 	$.fn.cleanHtml = function () {
 		var html = $(this).html();

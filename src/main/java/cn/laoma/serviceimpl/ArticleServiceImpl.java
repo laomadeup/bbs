@@ -1,11 +1,13 @@
 package cn.laoma.serviceimpl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -84,6 +86,92 @@ public class ArticleServiceImpl implements IArticleService {
 		
 		return articles;
 		
+	}
+
+
+	@Override
+	public Integer save(Article article) {
+		
+		if(article == null){
+			logger.error("传入参数为空!");
+			throw new RuntimeException("传入参数为空");
+		}
+		
+		if(article.getUserid() == null){
+			logger.error("用户Id不存在");
+			throw new RuntimeException("用户不存在");
+		}
+		
+		if(StringUtils.isEmpty(article.getTitle())){
+			logger.error("文章标题为空!");
+			throw new RuntimeException("传入的标题为空!");
+		}
+		
+		if(StringUtils.isEmpty(article.getContent())){
+			logger.error("文章内容为空!");
+			throw new RuntimeException("文章内容为空!");
+		}
+		//默认展示文章
+		if(article.getShowstatus() == null ){
+			article.setShowstatus(Short.valueOf("1"));
+		}
+		//默认不支持评论
+		if(article.getIsdiscuss() == null){
+			article.setIsdiscuss(Short.valueOf("-1"));
+		}
+		
+		article.setCreatetime(new Date().getTime());
+		article.setUpdatetime(new Date().getTime());
+		
+		//当做文章类型时，这里要查看文章类型存不存在？
+		
+		//该处放回的是插入的成功数
+		int count = this.articleDao.insert(article);
+		
+		Integer articleId = article.getArticleid();
+		
+		System.out.println("articleServiceImpl articleId:"+articleId);
+		
+		return articleId;
+	}
+
+
+	@Override
+	public Boolean modifyArticle(Article article) {
+		
+		if(article == null){
+			logger.error("传入参数为空!");
+			return null;
+		}
+		
+		if(article.getArticleid() == null){
+			logger.error("传入id为空!");
+			return null;
+		}
+		
+		if( StringUtils.isEmpty(article.getTitle())){
+			logger.error("传入标题为空!");
+			return null;
+		}
+		
+		if( StringUtils.isEmpty(article.getContent())){
+			logger.error("传入内容为空!");
+			return null;
+		}
+		
+		Integer articleId = article.getArticleid();
+		Article oldArticle = this.articleDao.selectByPrimaryKey(articleId);
+		
+		oldArticle.setTitle(article.getTitle());
+		oldArticle.setContent(article.getContent());
+		oldArticle.setUpdatetime(new Date().getTime());
+		
+		Integer count = this.articleDao.updateByPrimaryKey(oldArticle);
+		System.out.println("Modify article count:"+count);
+		if(count < 0){
+			return false;
+		}
+		return true;
 	}
 
 }

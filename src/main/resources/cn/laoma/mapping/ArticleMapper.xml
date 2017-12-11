@@ -134,16 +134,18 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.laoma.domain.Article">
-    insert into article (ARTICLEID, USERID, TITLE, 
+  
+  <insert id="insert" parameterType="cn.laoma.domain.Article" useGeneratedKeys="true" keyProperty="ARTICLEID">
+    insert into article (USERID, TITLE, 
       CONTENT, SHOWSTATUS, ARTICLETYPE, 
       ISDISCUSS, CREATETIME, UPDATETIME
       )
-    values (#{articleid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+    values ( #{userid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{showstatus,jdbcType=SMALLINT}, #{articletype,jdbcType=SMALLINT}, 
       #{isdiscuss,jdbcType=SMALLINT}, #{createtime,jdbcType=BIGINT}, #{updatetime,jdbcType=BIGINT}
       )
   </insert>
+  
   <insert id="insertSelective" parameterType="cn.laoma.domain.Article">
     insert into article
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -246,6 +248,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
   <update id="updateByExample" parameterType="map">
     update article
     set ARTICLEID = #{record.articleid,jdbcType=INTEGER},
@@ -261,6 +264,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
   <update id="updateByPrimaryKeySelective" parameterType="cn.laoma.domain.Article">
     update article
     <set>
@@ -291,6 +295,7 @@
     </set>
     where ARTICLEID = #{articleid,jdbcType=INTEGER}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="cn.laoma.domain.Article">
     update article
     set USERID = #{userid,jdbcType=INTEGER},
@@ -303,4 +308,5 @@
       UPDATETIME = #{updatetime,jdbcType=BIGINT}
     where ARTICLEID = #{articleid,jdbcType=INTEGER}
   </update>
+  
 </mapper>
