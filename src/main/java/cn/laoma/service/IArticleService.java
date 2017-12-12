@@ -41,4 +41,11 @@ public interface IArticleService {
 	public Boolean modifyArticle(Article article);
 
 	
+	
+	/**
+	 * 根据Id删除文章
+	 * */
+	public Boolean deleteArticleById(Integer articleId);
+
+	
 }

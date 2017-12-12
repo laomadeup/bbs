@@ -378,7 +378,7 @@
 	    					window.location.reload();
 	    					//isEqual = true;
 	    					//刷新当前页面
-	    					window.location.reload();
+	    					//window.location.reload();
 	    					//window.location = '${baseUrl}/user/manageArticle.do?pageNum=1';
 	    				}else{
 	    					

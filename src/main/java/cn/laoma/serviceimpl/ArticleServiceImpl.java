@@ -174,4 +174,22 @@ public class ArticleServiceImpl implements IArticleService {
 		return true;
 	}
 
+
+	@Override
+	public Boolean deleteArticleById(Integer articleId) {
+		
+		
+		if(articleId == null){
+			logger.error("传入id为空!");
+			return null;
+		}
+		
+		
+		Integer count = this.articleDao.deleteByPrimaryKey(articleId);
+		if(count != null && count > 0){
+			return true;
+		}
+		return false;
+	}
+
 }

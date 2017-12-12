@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.laoma.com/user/tags" prefix="lm"%>
 <jsp:include page="/WEB-INF/jsp/common/domain.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/jsp/common/head.jsp"></jsp:include>
 
@@ -28,82 +29,12 @@
 					</div>
 					<div class="col-md-1">
 						
-						<!-- Small modal 模态弹窗-->
-						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-						
-						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-						  <div class="modal-dialog modal-sm" role="document">
-							    <div class="modal-content">
-							      ...
-							    </div>
-							</div>
-						</div> -->
 					</div>
-					
-					
-					
 					
 					<div class="col-md-8 articlecontent">
 						
-						
-						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-						
-						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-						  <div class="modal-dialog modal-sm" role="document">
-							    <div class="modal-content">
-							      ...
-							    </div>
-							</div>
-						</div>
-						
-						 -->
-						 
-						 <!-- 弹窗 -->
-						<button type="button" class="btn btn-primary" style="display:none" data-toggle="modal" id="btn_add" ></button>
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					        <div class="modal-dialog" role="document">
-					            <div class="modal-content">
-					                <div class="modal-header">
-					                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					                    <h4 class="modal-title" id="myModalLabel">新增</h4>
-					                </div>
-					                <div class="modal-body">
-					
-					                    <div class="form-group">
-					                        <label for="txt_departmentname">部门名称</label>
-					                        <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="部门名称">
-					                    </div>
-					                    <div class="form-group">
-					                        <label for="txt_parentdepartment">上级部门</label>
-					                        <input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="上级部门">
-					                    </div>
-					                    <div class="form-group">
-					                        <label for="txt_departmentlevel">部门级别</label>
-					                        <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="部门级别">
-					                    </div>
-					                    <div class="form-group">
-					                        <label for="txt_statu">描述</label>
-					                        <input type="text" name="txt_statu" class="form-control" id="txt_statu" placeholder="状态">
-					                    </div>
-					                </div>
-					                <div class="modal-footer">
-					                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
-					                    <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
-					                </div>
-					            </div>
-					        </div>
-					    </div> 
-						 
-						 
-						 
-						 
-						 
-						 
-						
-						
 						<div class="article_list">
 						<%-- 	<c:if test="${ pageInfo.list == null || fn:length(pageInfo.list) == 0  }">
-							
 							</c:if> --%>
 							<c:choose>
 								<c:when test="${ pageInfo.list == null || fn:length(pageInfo.list) == 0  }">
@@ -124,20 +55,22 @@
 												${item.content }
 											</div>
 											<div class="articlemanage">
-												<span class="link_postdate">2014-10-23 20:29</span>
+												<span class="link_postdate">
+													<lm:fld pattren="yyyy-MM-dd HH:mm" longTime="${item.updatetime }"></lm:fld>
+												</span>
 										        <span class="link_view" title="阅读次数">
 										        	<a href="${baseUrl}/user/articleDetail.do?articleId=${item.articleid}&pageNum=${pageInfo.pageNum}" title="阅读次数">阅读</a>
-										        		(239)
+										        		<!-- (239) -->
 										        </span>
-										        <span class="link_comments" title="评论次数">
+										       <!--  <span class="link_comments" title="评论次数">
 										        	<a href="/ma155211/article/details/40403001#comments" title="评论次数" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>
 										        	(0)
-										        </span>
+										        </span> -->
 									            <span class="link_edit">
 									            	<a href="${baseUrl}/user/articleEdit.do?articleId=${item.articleid}" title="编辑">编辑</a>
 									            </span>
 									            <span class="link_delete">
-									            	<a href="javascript:void(0);" onclick="javascript:deleteArticle(40403001);return false;" title="删除">删除</a>
+									            	<a href="javascript:void(0);" id="${item.articleid }" class="deleteArticle" title="删除">删除</a>
 									            </span>
 											</div>
 											<div class="clear" >
@@ -150,12 +83,6 @@
 						</div>
 						
 						<div class="pagelist">
-							<!--<span> 29条  共2页</span>
-							<strong>1</strong> 
-							<a href="/ma155211/article/list/2">2</a> 
-							<a href="/ma155211/article/list/2">下一页</a> 
-							<a href="/ma155211/article/list/2">尾页</a>-->
-							
 							
 							<nav aria-label="Page navigation">
 								
@@ -216,7 +143,7 @@
 		</div>
 
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
-
+		<script src="${baseResPath }/js/dialog.js" type="text/javascript" charset="utf-8"></script>
 		<!-- <footer class="container">
 			<p>© Company 2017</p>
 		</footer>
@@ -237,6 +164,50 @@
  				    $('#myModal').modal();
  				
  				});
+ 				
+ 				
+ 				//注册删除按钮的事件
+ 				 $('.deleteArticle').click(function () {
+ 				    //取表格的选中行数据
+ 		           /* var arrselections = $("#tb_departments").bootstrapTable('getSelections');
+ 		            if (arrselections.length <= 0) {
+ 		                toastr.warning('请选择有效数据');
+ 		                return;
+ 		            }
+ 					*/
+ 					
+ 					var articleId = $(this).attr('id');
+ 					console.log(articleId);
+ 		            Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) {
+ 		                if (!e) {
+ 		                    return;
+ 		                }
+ 		                $.ajax({
+ 		                    type: "post",
+ 		                    url: '${baseUrl}/user/articleDelete.do',
+ 		                    data: {articleId:articleId },
+ 		                    dataType:'json',
+ 		                    success: function (response) {
+ 		                        if (response.success) {
+ 		                            alert("删除数据成功!");
+ 		                            //刷新当前页面
+ 		                            //window.location.reload();
+ 		                           window.location = '${baseUrl}/user/manageArticle.do?pageNum=1';
+ 		                        }
+ 		                    },
+ 		                    error: function () {
+ 		                        alert("网络繁忙!");
+ 		                    },
+ 		                    complete: function () {
+
+ 		                    }
+
+ 		                });
+ 		            });
+ 		        });	
+ 				
+ 				
+ 				
  				//$('.container .navbar #myblog').attr("class","active");
  				
  			});
