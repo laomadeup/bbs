@@ -34,14 +34,6 @@ public class BlogListController {
 		List<Article> articles = articleServiceImpl.getAllArticle();
 		//用PageInfo对结果进行包装,传入连续显示的页数
 		PageInfo page = new PageInfo(articles,5);
-		System.out.println(page.getPageNum());
-	    System.out.println(page.getPageSize());
-	    System.out.println(page.getStartRow());
-	    System.out.println(page.getEndRow());
-	    System.out.println(page.getTotal());
-	    System.out.println(page.getPages());
-	    System.out.println(page.isHasPreviousPage());
-	    System.out.println(page.isHasNextPage());
 		//测试PageInfo全部属性
 		model.addAttribute("pageInfo", page);
 		
